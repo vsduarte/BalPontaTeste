@@ -1,30 +1,26 @@
 %
-%   Programa Balanço de Ponta
+%   Programa Balanï¿½o de Ponta
 %
 
 %---> Inicia contador de tempo
 tic
 
-<<<<<<< HEAD
-%=== INICIALIZAÇÃO ========================================================
+%=== INICIALIZAï¿½ï¿½O ========================================================
 clear all; clc
 %path = './P05_2016';
 path = './Sensibilidade_Caso3';
 ERR = 1;
 %path = uigetdir;
-=======
-% TESTE ERICK
->>>>>>> 0d39aa27dcfab9c0cbb0c2881c0c3c94a4201b29
 
-%=== ESCOLHA DO TIPO DE SIMULAÇÃO =========================================
+%=== ESCOLHA DO TIPO DE SIMULAï¿½ï¿½O =========================================
 %
-%   =1  Determinístico
-%   =2  Estocástico
+%   =1  Determinï¿½stico
+%   =2  Estocï¿½stico
 %
 %=== ESCOLHA DO TIPO DE PERDAS ============================================
 %
 %   =1  Funcao de Perdas
-%   =2  Perdas pela operação em paralelo
+%   =2  Perdas pela operaï¿½ï¿½o em paralelo
 %   =3  Pdisp Lido do Suishi
 %
 TipoSimulacao = 2;
@@ -40,7 +36,7 @@ end
 %=== LEITURA DE DADOS =====================================================
 
 %--------------------------------------------------------------------------
-%---> Lê arquivo caso.dat
+%---> Lï¿½ arquivo caso.dat
 %--------------------------------------------------------------------------
 NomeArquivoCaso = [path '/caso.dat'];
 fid_caso = fopen(NomeArquivoCaso,'r');
@@ -48,7 +44,7 @@ NomeArquivoArquivos = fscanf(fid_caso,'%s');
 fclose(fid_caso);
 
 %--------------------------------------------------------------------------
-%---> Lê arquivo arquivos.dat
+%---> Lï¿½ arquivo arquivos.dat
 %--------------------------------------------------------------------------
 NomeArquivoArquivos = [path '/' NomeArquivoArquivos];
 fid_arquivos = fopen(NomeArquivoArquivos,'r');
@@ -97,45 +93,45 @@ card = fgetl(fid_arquivos); NomeArquivoAgrint = ...
 fclose(fid_arquivos);
 
 %--------------------------------------------------------------------------
-%---> Lê Dados Gerais
+%---> Lï¿½ Dados Gerais
 %--------------------------------------------------------------------------
 fprintf('Lendo dados gerais...')
 LeDger;
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Lê Configuração Hidroelétrica
+%---> Lï¿½ Configuraï¿½ï¿½o Hidroelï¿½trica
 %--------------------------------------------------------------------------
-fprintf('Lendo configuração hidroelétrica...')
+fprintf('Lendo configuraï¿½ï¿½o hidroelï¿½trica...')
 LeConfigHidro;
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Lê Configuração Termoelétrica
+%---> Lï¿½ Configuraï¿½ï¿½o Termoelï¿½trica
 %--------------------------------------------------------------------------
-fprintf('Lendo configuração termoelétrica...')
+fprintf('Lendo configuraï¿½ï¿½o termoelï¿½trica...')
 LeConfigTermo;
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Lê Subsistemas (Mercado, Intercambios e Não Simuladas)
+%---> Lï¿½ Subsistemas (Mercado, Intercambios e Nï¿½o Simuladas)
 %--------------------------------------------------------------------------
-fprintf('Lendo dados de mercado, limites de intercâmbios e não simuladas...')
+fprintf('Lendo dados de mercado, limites de intercï¿½mbios e nï¿½o simuladas...')
 LeSistema;
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Lê Agrupamentos de Intercambios
+%---> Lï¿½ Agrupamentos de Intercambios
 %--------------------------------------------------------------------------
-fprintf('Lendo dados de agrupamentos de intercâmbios...')
+fprintf('Lendo dados de agrupamentos de intercï¿½mbios...')
 LeAgrint;
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Lê Série de Armazenamentos (Deterministico)
+%---> Lï¿½ Sï¿½rie de Armazenamentos (Deterministico)
 %--------------------------------------------------------------------------
 if (TipoSimulacao == 1)
-   fprintf('Lendo série de energia armazenada...')
+   fprintf('Lendo sï¿½rie de energia armazenada...')
    NomeArquivoEAR = [path '/Armazenamento.csv'];
    EAR = zeros(nper,nsis);
    dummy = dlmread(NomeArquivoEAR,';',2,1);
@@ -144,7 +140,7 @@ if (TipoSimulacao == 1)
 end
 
 %--------------------------------------------------------------------------
-%---> Lê Arquivo com as séries de armazenamentos (Probabilistico)
+%---> Lï¿½ Arquivo com as sï¿½ries de armazenamentos (Probabilistico)
 %--------------------------------------------------------------------------
 if (TipoSimulacao == 2 && TipoPerdas ~= 3)
    fprintf('Lendo arquivo de armazenamentos...')
@@ -152,7 +148,7 @@ if (TipoSimulacao == 2 && TipoPerdas ~= 3)
    for isis = 1:nsis
       arquivo_EAR = [path '/earmfp' sprintf('%2.2i',isis') '.out'];
       if (exist(arquivo_EAR,'file') ~= 2)
-         fprintf('\n\nERRO: O arquivo %s não existe\n',arquivo_EAR);
+         fprintf('\n\nERRO: O arquivo %s nï¿½o existe\n',arquivo_EAR);
          ERR = 1;
          return
       end
@@ -164,7 +160,7 @@ if (TipoSimulacao == 2 && TipoPerdas ~= 3)
 end
 
 %--------------------------------------------------------------------------
-%---> Lê Arquivo com as Potências Disponíveis (uso do PDISP do SUISHI)
+%---> Lï¿½ Arquivo com as Potï¿½ncias Disponï¿½veis (uso do PDISP do SUISHI)
 %--------------------------------------------------------------------------
 if (TipoPerdas == 3)
    LePdisp;
@@ -173,12 +169,12 @@ if (TipoPerdas == 3)
    end
 end
 %--------------------------------------------------------------------------
-%---> Lê Injeção de Potência Adicional
+%---> Lï¿½ Injeï¿½ï¿½o de Potï¿½ncia Adicional
 %--------------------------------------------------------------------------
 OfertaAdicional = zeros(nper,nsis);
 NomeArquivoOferta = [path '/OfertaAdicional.csv'];
 if (exist(NomeArquivoOferta,'file') == 2)
-   fprintf('Lendo injeção de potência adicional...')
+   fprintf('Lendo injeï¿½ï¿½o de potï¿½ncia adicional...')
    dummy = dlmread(NomeArquivoOferta,';',1,1);
    vsis = dummy(1,:);
    dummy(1,:) = [];
@@ -190,7 +186,7 @@ if (exist(NomeArquivoOferta,'file') == 2)
 end
 
 %--------------------------------------------------------------------------
-%---> Lê Arquivo de Perdas Fixas
+%---> Lï¿½ Arquivo de Perdas Fixas
 %--------------------------------------------------------------------------
 fprintf('Lendo arquivo de perdas fixas...')
 LePerdaFixa;
@@ -198,7 +194,7 @@ fprintf('   OK\n');
 
 fprintf('FIM DA LEITURA DE DADOS\n\n')
 
-%=== CÁLCULO DE VARIÁVEIS DO SIST. EQUIVALENTE =============================
+%=== Cï¿½LCULO DE VARIï¿½VEIS DO SIST. EQUIVALENTE =============================
 
 %--------------------------------------------------------------------------
 %---> Calcula Perdas por Delecinamento, por Subsisetma
@@ -219,9 +215,9 @@ if (TipoPerdas == 1)
 end
 
 %--------------------------------------------------------------------------
-%---> Calcula Potência Instalada das hidrúlicas
+%---> Calcula Potï¿½ncia Instalada das hidrï¿½licas
 %--------------------------------------------------------------------------
-fprintf('Calculando potência instalada hidroelétrica...')
+fprintf('Calculando potï¿½ncia instalada hidroelï¿½trica...')
 CalcPinstH;
 for isim = 1:nsim
    GHmax(:,:,isim) = GHmax(:,:,isim) + OfertaAdicional;
@@ -229,18 +225,18 @@ end
 fprintf('   OK\n');
 
 %--------------------------------------------------------------------------
-%---> Calcula Potência Instalada das termoelétricas
+%---> Calcula Potï¿½ncia Instalada das termoelï¿½tricas
 %--------------------------------------------------------------------------
-fprintf('Calculando potência instalada termoelétrica...')
+fprintf('Calculando potï¿½ncia instalada termoelï¿½trica...')
 CalcPinstT;
 fprintf('   OK\n');
 
-fprintf('FIM DO CÁLCULO DE VARIÁVEIS DO SIST. EQUIVALENTE\n\n')
+fprintf('FIM DO Cï¿½LCULO DE VARIï¿½VEIS DO SIST. EQUIVALENTE\n\n')
 
 
-%=== SOLUÇÃO DO BALANÇO DE PONTA ==========================================
+%=== SOLUï¿½ï¿½O DO BALANï¿½O DE PONTA ==========================================
 
-%---> Prepara dados para a solução do Balanço
+%---> Prepara dados para a soluï¿½ï¿½o do Balanï¿½o
 LimInterc = zeros((nsis+nfic)*(nsis+nfic)-(nsis+nfic),iper);
 for iper = mesi:nper
    Matriz = zeros(1,60); Matriz(iper) = 1;
@@ -266,11 +262,11 @@ for iper = mesi:nper
 end
 toc
 if (TipoSimulacao == 1)
-   %---> Balanço de ponta determinístico
+   %---> Balanï¿½o de ponta determinï¿½stico
    BalancoPontaDeterministico;
 end
 if (TipoSimulacao == 2)
-   %---> Balanço de ponta determinístico
+   %---> Balanï¿½o de ponta determinï¿½stico
    BalancoPontaProbabilistico;
 end
 
