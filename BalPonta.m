@@ -9,7 +9,7 @@ tic
 clear all; clc
 %path = './P05_2016';
 path = './Sensibilidade_Caso3';
-ERR = 0;
+ERR = 1;
 %path = uigetdir;
 
 %=== ESCOLHA DO TIPO DE SIMULAÇÃO =========================================
