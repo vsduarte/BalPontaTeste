@@ -7,6 +7,16 @@
 %
 % by Vitor Silva Duarte
 
+
+
+
+
+
+teste 
+
+
+
+
 function earmf = Le_earmf_out(arquivo,nanos,varargin)
 
 %---> Defaults
