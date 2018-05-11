@@ -5,12 +5,16 @@
 %---> Inicia contador de tempo
 tic
 
+<<<<<<< HEAD
 %=== INICIALIZAÇÃO ========================================================
 clear all; clc
 %path = './P05_2016';
 path = './Sensibilidade_Caso3';
 ERR = 1;
 %path = uigetdir;
+=======
+% TESTE ERICK
+>>>>>>> 0d39aa27dcfab9c0cbb0c2881c0c3c94a4201b29
 
 %=== ESCOLHA DO TIPO DE SIMULAÇÃO =========================================
 %
